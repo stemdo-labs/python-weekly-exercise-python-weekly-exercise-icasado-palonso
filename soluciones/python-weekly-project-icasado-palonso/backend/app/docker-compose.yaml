@@ -1,1 +1,22 @@
-#definicion del python dockerizado y postgre dockerizado
+version: "3"
+services:
+  # Dockerización python
+  app:
+    container_name: fastapi_app
+    build: ./app
+    ports:
+      - "80:80"
+    depends_on:
+     
+
+  
+  # Dockerización postgre
+  db:
+    image: postgres
+    container_name: postgres_database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: to_do_list_db
