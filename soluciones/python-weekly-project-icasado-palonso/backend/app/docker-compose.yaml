@@ -10,9 +10,6 @@ services:
       - db
     environment:
       - DATABASE_URL=postgresql://posgres:posgres@db:5432/to_do_list_db
-
-     
-
   
   # Dockerización postgre
   db:
@@ -25,4 +22,5 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: to_do_list_db
     volumes:
+      - ./sqlinit/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgres-data:/var/lib/postgresql/data
