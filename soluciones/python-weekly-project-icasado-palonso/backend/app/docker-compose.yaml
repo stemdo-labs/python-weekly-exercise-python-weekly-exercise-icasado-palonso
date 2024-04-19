@@ -3,10 +3,14 @@ services:
   # Dockerización python
   app:
     container_name: fastapi_app
-    build: ./app
+    image: tiangolo/uvicorn-gunicorn-fastapi
     ports:
-      - "80:80"
+      - "8000:80"
     depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://posgres:posgres@db:5432/to_do_list_db
+
      
 
   
