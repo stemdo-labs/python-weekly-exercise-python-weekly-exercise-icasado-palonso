@@ -1,0 +1,1 @@
+La app en principio no tendrá frontend, pero es una mejora a añadir
