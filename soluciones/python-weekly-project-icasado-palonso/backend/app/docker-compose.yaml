@@ -1,0 +1,26 @@
+version: "3"
+services:
+  # Dockerización python
+  app:
+    container_name: fastapi_app
+    image: tiangolo/uvicorn-gunicorn-fastapi
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://posgres:posgres@db:5432/to_do_list_db
+  
+  # Dockerización postgre
+  db:
+    image: postgres
+    container_name: postgres_database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: to_do_list_db
+    volumes:
+      - ./sqlinit/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres-data:/var/lib/postgresql/data
